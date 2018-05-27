@@ -19,5 +19,13 @@ TOMCAT\apache-tomcat-9.0.8\conf\tomcat-users.xml
 - `/` vs `/hello`
 - package example
 - ROOT example
-2. Maven archetype servlet
 
+2. [Maven archetype servlet](01_maven-current-date-servlet/README.md)
+- creating servlet using archetypes
+- take a note how servlet classfile location is defined (no .class/.java extension)
+
+*Exercise 01:*
+Try implement similar servlet called `random-animal-servlet`
+
+Servlet should be able to print random animal name each time you refresh browser on path:
+`http://localhost:8080/random-animal-servlet/next`
