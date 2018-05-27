@@ -1,10 +1,10 @@
-# servlet-examples
+# Servlet Examples
 
 ## Enable tomcat manager
 
 1. Edit following file:
 ```
-C:\TOMCAT\apache-tomcat-9.0.8\conf\tomcat-users.xml
+TOMCAT\apache-tomcat-9.0.8\conf\tomcat-users.xml
 ```
 2. Add following section:
 ```
@@ -14,12 +14,10 @@ C:\TOMCAT\apache-tomcat-9.0.8\conf\tomcat-users.xml
 3. Start your tomcat by running `startup.sh` or `startup.bat`
 4. Verify if manager is available `http://localhost:8080/manager/html`
 
-## 00 hello world servlet
-
-1. Compile java classes using following command. Note classpath parameter and `servlet-api.jar` library
-```
-javac -classpath C:\TOMCAT\apache-tomcat-9.0.8\lib\servlet-api.jar HelloWorldServlet.java
-```
-2. Copy `HelloWorldServlet.class` to `C:\TOMCAT\apache-tomcat-9.0.8\webapps\hello-world-servlet\WEB-INF\classes`
-3. Copy `web.xml` to `C:\TOMCAT\apache-tomcat-9.0.8\webapps\hello-world-servlet\WEB-INF\`
+## List of examples
+1. [Simple hello-world-servlet](00_hello-world-servlet/README.md)
+- `/` vs `/hello`
+- package example
+- ROOT example
+2. Maven archetype servlet
 
