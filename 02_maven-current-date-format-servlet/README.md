@@ -9,6 +9,7 @@ mvn clean package
 ```
 2. Copy `target/current-date-servlet.war` to `TOMCAT\apache-tomcat-9.0.8\webapps` location
 3. Go to `http://localhost:8080/current-date-servlet/` using your browser.
+4. Additional feature is available by providing `?format=` parameter.
 
 
 ## How to create new servlet using archetype?
@@ -18,8 +19,14 @@ mvn clean package
 
 ## Exercises
 
-*Exercise 01:*
-Try implement similar servlet called `random-animal-servlet`
+*Exercise 02:*
+Remember `random-animal-servlet` Try to implement feature allowing to filter to given type animal for example:
 
-Servlet should be able to print random animal name each time you refresh browser on path:
-`http://localhost:8080/random-animal-servlet/next`
+For given path `http://localhost:8080/random-animal-servlet/next?type=bird` you should get:
+- chicken
+- owl
+...
+and for path `http://localhost:8080/random-animal-servlet/next?type=insect` you should get:
+- ant
+- worm
+...

@@ -24,8 +24,6 @@ TOMCAT\apache-tomcat-9.0.8\conf\tomcat-users.xml
 - creating servlet using archetypes
 - take a note how servlet classfile location is defined (no .class/.java extension)
 
-*Exercise 01:*
-Try implement similar servlet called `random-animal-servlet`
-
-Servlet should be able to print random animal name each time you refresh browser on path:
-`http://localhost:8080/random-animal-servlet/next`
+3. [Get parameters servlet example](02_maven-current-date-format-servlet/README.md)
+- try play with different date formats
+- what if someone pass wrong date format in url?
