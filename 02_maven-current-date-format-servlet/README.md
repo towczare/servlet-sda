@@ -1,5 +1,5 @@
-# 01_maven-current-date-servlet
-Simple servlet using maven archetype presenting current date.
+# 02_maven-current-date-format-servlet
+Simple servlet using maven archetype presenting current date in different formats.
 
 ## How to run it?
 

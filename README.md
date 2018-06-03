@@ -15,15 +15,17 @@ TOMCAT\apache-tomcat-9.0.8\conf\tomcat-users.xml
 4. Verify if manager is available `http://localhost:8080/manager/html`
 
 ## List of examples
-1. [Simple hello-world-servlet](00_hello-world-servlet/README.md)
+0. [Simple hello-world-servlet](00_hello-world-servlet/README.md)
 - `/` vs `/hello`
 - package example
 - ROOT example
 
-2. [Maven archetype servlet](01_maven-current-date-servlet/README.md)
+1. [Maven archetype servlet](01_maven-current-date-servlet/README.md)
 - creating servlet using archetypes
 - take a note how servlet classfile location is defined (no .class/.java extension)
 
-3. [Get parameters servlet example](02_maven-current-date-format-servlet/README.md)
+2. [Get parameters servlet example](02_maven-current-date-format-servlet/README.md)
 - try play with different date formats
 - what if someone pass wrong date format in url?
+
+3. [GET POST example](03_get-post-servlet/README.md)

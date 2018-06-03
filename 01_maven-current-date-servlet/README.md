@@ -23,3 +23,5 @@ Try implement similar servlet called `random-animal-servlet`
 
 Servlet should be able to print random animal name each time you refresh browser on path:
 `http://localhost:8080/random-animal-servlet/next`
+
+As the storage for animals use simple `List<Animal>`
