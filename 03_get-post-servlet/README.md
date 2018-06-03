@@ -4,7 +4,7 @@ Simple servlet using maven archetype covering GET POST methods
 
 ## Exercises
 
-*Exercise 02:*
+*Exercise 03:*
 Remember `random-animal-servlet` 
 
 1. Move feature of getting random animal to `/random` context path

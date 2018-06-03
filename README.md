@@ -29,3 +29,4 @@ TOMCAT\apache-tomcat-9.0.8\conf\tomcat-users.xml
 - what if someone pass wrong date format in url?
 
 3. [GET POST example](03_get-post-servlet/README.md)
+4. [Annotation config example](04_annotation-config-servlet/README.md)
