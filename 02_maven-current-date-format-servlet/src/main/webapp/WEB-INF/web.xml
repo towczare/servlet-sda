@@ -9,7 +9,7 @@
 
   <servlet>
     <servlet-name>CurrentDateServlet</servlet-name>
-    <servlet-class>pl.lodz.servlet.currentdateservlet.CurrentDateServlet</servlet-class>
+    <servlet-class>foo.bar.CurrentDateServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>

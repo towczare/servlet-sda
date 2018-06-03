@@ -9,7 +9,7 @@
 
   <servlet>
     <servlet-name>CurrentDateServlet</servlet-name>
-    <servlet-class>pl.lodz.servlet.currentdateservlet.NiceWordCollectorServlet</servlet-class>
+    <servlet-class>foo.bar.NiceWordCollectorServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>

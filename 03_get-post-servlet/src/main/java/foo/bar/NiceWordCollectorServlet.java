@@ -1,4 +1,4 @@
-package pl.lodz.servlet.currentdateservlet;
+package foo.bar;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

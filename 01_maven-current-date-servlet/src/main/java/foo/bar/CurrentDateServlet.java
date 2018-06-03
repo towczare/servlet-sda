@@ -1,4 +1,4 @@
-package pl.lodz.servlet.currentdateservlet;
+package foo.bar;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,15 +11,12 @@ import java.util.Date;
 
 public class CurrentDateServlet extends HttpServlet {
 
-    public static final String DEFAULT_DATE_FORMAT = "MM/dd/yyyy HH:mm:ss";
+    public static final DateFormat DATE_FORMAT = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
     public static final String TEXT_PLAIN = "text/plain";
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType(TEXT_PLAIN);
-        String format = request.getParameter("format");
-        DateFormat df = new SimpleDateFormat(format != null ? format : DEFAULT_DATE_FORMAT);
-
-        response.getWriter().write(df.format(new Date()));
+        response.getWriter().write(DATE_FORMAT.format(new Date()));
     }
 
     @Override

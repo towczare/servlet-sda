@@ -5,18 +5,4 @@
         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
         metadata-complete="false"
         version="3.0">
-  <display-name>Servlet Displaying Current Date</display-name>
-
-  <servlet>
-    <servlet-name>CurrentDateServlet</servlet-name>
-    <servlet-class>foo.bar.CurrentDateServlet</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>CurrentDateServlet</servlet-name>
-    <url-pattern>/</url-pattern>
-  </servlet-mapping>
-
-
-
 </web-app>
