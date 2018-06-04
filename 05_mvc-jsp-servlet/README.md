@@ -27,11 +27,11 @@ Here is example of this view:
 | Turtle Leonardo |101            | Reptile |
 
 4. Implement details view, allowing you to see details of animal
-Id: 1
-Name: Cat Sylvester
-Age: 12
-Species Mammal
-![some pretty picture of cat](https://upload.wikimedia.org/wikipedia/en/thumb/8/82/Sylvester_the_Cat.svg/1200px-Sylvester_the_Cat.svg.png "some pretty picture of cat")
+- Id: 1
+- Name: Cat Sylvester
+- Age: 12
+- Species Mammal
+![some pretty picture of cat](http://images5.fanpop.com/image/photos/30900000/Sylvester-the-Cat-warner-brothers-animation-30976217-250-262.jpg "some pretty picture of cat")
 ```
 Sylvester J. Pussycat Sr., usually called Sylvester, is a fictional character,
 a three-time Academy Award-winning anthropomorphic, 40, 50, or 60-Inch tall Tuxedo
