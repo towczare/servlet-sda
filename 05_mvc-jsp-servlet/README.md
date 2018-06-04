@@ -48,7 +48,17 @@ Melodies characters, only behind Bugs Bunny, Porky Pig, and Daffy Duck respectiv
 cartoons won Academy Awards, the most for any starring Looney Tunes character: they are Tweetie Pie,
 Speedy Gonzales, and Birds Anonymous.
 ```
-5. Next step is preparing form allowing you to add new animals to Map<> representing you database.
+5. Next step is preparing form allowing you to add new animals to Map<Integer, Animal> representing you database.
+- for this purpose you will need create form with POST action and implement logic in doPost method of your servlet
 6. Implement feature allowing you to delete animals, and include url which allows you to POST request.
 7. Implement feature allowing you to edit given animal and save results.
-## Congratulations you completed your first CRUD project :-)
+- think of reusing existing form you created for creation new animal purposes
+## Congratulations you completed your first CRUD project :-) Think of your own ideas you can implement using the same techniques you learned so far.
+8. Add more animals to your Map<Integer, Animal> like 20, then prepare form above your list, so you can filter your animals by name, species and age.
+- Use get method so you can save your url.
+9. Think of implementing pagination feature for your list like following example:
+```
+?page=1&delta=20
+```
+- page - represents page of elements returned
+- delta - represents how many elements you want to display on each page
