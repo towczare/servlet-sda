@@ -1,23 +1,31 @@
 package zoo;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
-
 /**
  * Created by tomic on 09.06.18.
  */
-public enum Animal {
-    DOG,
-    CAT,
-    FISH;
+public class Animal {
 
-    private static final Random RANDOM = new Random();
-    private static List<Animal> ANIMALS = Collections.unmodifiableList(Arrays.asList(values()));
-    private static final int SIZE = ANIMALS.size();
+    private String name;
+    private AnimalType type;
 
-    public static Animal random() {
-        return ANIMALS.get(RANDOM.nextInt(SIZE));
+    public Animal(String name, AnimalType type) {
+        this.name = name;
+        this.type = type;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public AnimalType getType() {
+        return type;
+    }
+
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "name='" + name + '\'' +
+                ", type=" + type +
+                '}';
     }
 }
