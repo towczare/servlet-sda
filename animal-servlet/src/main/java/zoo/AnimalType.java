@@ -12,11 +12,21 @@ public enum AnimalType {
 
     FISH, MAMMALS, REPTILE, INSECT, BIRD, AMPHIBIAN, UNKNOWN;
 
+
     private static final Random RANDOM = new Random();
     private static List<AnimalType> ANIMALS = Collections.unmodifiableList(Arrays.asList(values()));
     private static final int SIZE = ANIMALS.size();
 
     public static AnimalType random() {
         return ANIMALS.get(RANDOM.nextInt(SIZE));
+    }
+
+    public static AnimalType getAnimalType(String type) {
+        try {
+            return AnimalType.valueOf(type.toUpperCase());
+        } catch (IllegalArgumentException ex) {
+            System.out.println("Unknown type. Returning type UNKNOWN");
+            return AnimalType.UNKNOWN;
+        }
     }
 }
