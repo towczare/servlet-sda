@@ -18,7 +18,7 @@
 
   <form method="post" action="/animal-servlet/" class="w3-container">
     <label>Name of animal</label>
-    <input type="text" name="animalName" class="w3-input"/>
+    <input type="text" name="animalName" class="w3-input" />
 
     <select name="animalType" class="w3-input">
       <c:forEach items="${animalTypes}" var="animalType">
