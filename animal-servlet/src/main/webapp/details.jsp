@@ -11,6 +11,16 @@
     <title>See details of animal</title>
 </head>
 <body>
-  <h2>See details of animal</h2>
+  <h2>Details of animal</h2>
+
+
+  <ul>
+    <li>${animalDetails.getId()}</li>
+    <li>${animalDetails.getName()}</li>
+    <li>${animalDetails.getType()}</li>
+  </ul>
+
+  <a href="/animal-servlet/" >Back to list</a>
+
 </body>
 </html>

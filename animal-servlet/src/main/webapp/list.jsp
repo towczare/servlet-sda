@@ -5,14 +5,28 @@
     <title>See list of animals</title>
 </head>
 <body>
+<c:if test="${not empty msgToUser}">
+    <h3><c:out value="${msgToUser}"/></h3>
+</c:if>
 
   <h1>We have ${animalsList.size()} animals</h1>
 
-  <ul>
+  <table>
+      <th>
+          <td>Id</td>
+          <td>Name</td>
+          <td>Type</td>
+          <td>Details</td>
+      </th>
       <c:forEach items="${animalsList}" var="animal">
-          <li><c:out value="${animal.getName()}"/> of type <c:out value="${animal.getType()}"/></li>
+          <tr>
+              <td><c:out value="${animal.getId()}"/></td>
+              <td><c:out value="${animal.getName()}"/></td>
+              <td><c:out value="${animal.getType()}"/></td>
+              <td><a href="details?animalId=${animal.getId()}" >See details</a> </td>
+          </tr>
       </c:forEach>
-  </ul>
+  </table>
 
 </body>
 </html>

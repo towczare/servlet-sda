@@ -22,6 +22,7 @@ public class AnimalServlet extends HttpServlet {
     public static final String ADD_ACTION = "/add";
     public static final String DETAILS_ACTION = "/details";
     public static final String ANIMALS_LIST = "animalsList";
+    public static final String ANIMAL_ID = "animalId";
 
     private AnimalService animalService;
 
@@ -29,18 +30,36 @@ public class AnimalServlet extends HttpServlet {
         response.setContentType(TEXT_HTML);
 
         if(request.getServletPath().equals(ADD_ACTION)) {
-            request.getRequestDispatcher("form.jsp").forward(request, response);
+            animalForm(request, response);
         } else if(request.getServletPath().equals(DETAILS_ACTION)) {
-            request.getRequestDispatcher("details.jsp").forward(request, response);
+            animaDetails(request, response);
         } else {
-            request.setAttribute(ANIMALS_LIST, animalService.findAll());
-            request.getRequestDispatcher("list.jsp").forward(request, response);
+            animalList(request, response);
+        }
+    }
+
+    private void animalForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("form.jsp").forward(request, response);
+    }
+
+    private void animalList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute(ANIMALS_LIST, animalService.findAll());
+        request.getRequestDispatcher("list.jsp").forward(request, response);
+    }
+
+    private void animaDetails(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String paramId = request.getParameter(ANIMAL_ID);
+        if (paramId == null || paramId.equals("")) {
+            response.sendRedirect("/animal-servlet");
+        } else {
+            request.setAttribute("animalDetails", animalService.findOne(Integer.valueOf(paramId)));
+            request.getRequestDispatcher("details.jsp").forward(request, response);
         }
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter("animalName");
-        animalService.add(new Animal(name, AnimalType.UNKNOWN));
+        animalService.add(new Animal(AnimalService.CURRENT_INDEX++, name, AnimalType.UNKNOWN));
         response.sendRedirect("/animal-servlet");
     }
 
