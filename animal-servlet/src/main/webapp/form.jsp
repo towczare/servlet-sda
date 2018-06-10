@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: tomic
@@ -17,6 +18,22 @@
   <form method="post" action="/animal-servlet/">
     <label>Name of animal</label>
     <input type="text" name="animalName" />
+
+    <select name="animalType">
+      <c:forEach items="${animalTypes}" var="animalType">
+        <option value="${animalType}">${animalType.getName()}</option>
+      </c:forEach>
+    </select>
+
+    <label>Url to picture of animal</label>
+    <input type="text" name="animalUrl" />
+
+    <label>Description of animal</label>
+    <textarea name="animalDescription" rows="4" cols="50"></textarea>
+
+    <label>Age of animal</label>
+    <input type="number" step="1" name="animalAge" />
+
     <input type="submit" value="Add animal to list" />
   </form>
 </body>

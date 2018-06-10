@@ -39,6 +39,8 @@ public class AnimalServlet extends HttpServlet {
     }
 
     private void animalForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("animalTypes", AnimalType.getAvailableTypesForUser());
+
         request.getRequestDispatcher("form.jsp").forward(request, response);
     }
 
@@ -59,7 +61,12 @@ public class AnimalServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter("animalName");
-        animalService.add(new Animal(AnimalService.CURRENT_INDEX++, name, AnimalType.UNKNOWN));
+        String url = request.getParameter("animalUrl");
+        String description = request.getParameter("animalDescription");
+        String age = request.getParameter("animalAge");
+        String animalType = request.getParameter("animalType");
+
+        animalService.add(new Animal(AnimalService.CURRENT_INDEX++, name, Integer.valueOf(age), url, description, AnimalType.valueOf(animalType)));
         response.sendRedirect("/animal-servlet");
     }
 

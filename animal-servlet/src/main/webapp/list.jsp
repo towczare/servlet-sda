@@ -12,12 +12,12 @@
   <h1>We have ${animalsList.size()} animals</h1>
 
   <table>
-      <th>
-          <td>Id</td>
-          <td>Name</td>
-          <td>Type</td>
-          <td>Details</td>
-      </th>
+      <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Details</th>
+      </tr>
       <c:forEach items="${animalsList}" var="animal">
           <tr>
               <td><c:out value="${animal.getId()}"/></td>

@@ -7,11 +7,17 @@ public class Animal {
 
     private int id;
     private String name;
+    private int age;
+    private String imageUrl;
+    private String description;
     private AnimalType type;
-
-    public Animal(int id, String name, AnimalType type) {
+    
+    public Animal(int id, String name, int age, String imageUrl, String description, AnimalType type) {
         this.id = id;
         this.name = name;
+        this.age = age;
+        this.imageUrl = imageUrl;
+        this.description = description;
         this.type = type;
     }
 
@@ -27,11 +33,26 @@ public class Animal {
         return id;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
     @Override
     public String toString() {
         return "Animal{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", age=" + age +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", description='" + description + '\'' +
                 ", type=" + type +
                 '}';
     }
