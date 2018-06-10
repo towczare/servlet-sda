@@ -1,9 +1,7 @@
 # 05_mvc-jsp-servlet
-Simple portlet showing combining jsp technology with servlet controller
-
+Simple portlet showing combiining jsp technology with servlet controller
 
 ## Exercises
-
 *Exercise 05:*
 1. Create model for animal:
 ```
@@ -62,3 +60,57 @@ Speedy Gonzales, and Birds Anonymous.
 ```
 - page - represents page of elements returned
 - delta - represents how many elements you want to display on each page
+
+
+
+## How to Servlet CRUD
+1. Add packages to your project splitting model layer from controller/service layer.
+      ```
+      foo
+      └── bar
+          └── yourdomain
+              ├── controller
+              ├── model
+              └── service
+      ```
+2. Implement simple routing in `YourServlet.java` and put it in your controller package
+    - `/` -> `list.jsp`
+    - `/details` -> `details.jsp`
+    - `/add` -> `form.jsp`
+   To each page add section with simple header naming current view:
+   ```
+   <h1> Welcome on list.jsp</h1>
+   <h1> Welcome on details.jsp</h1>
+   ...
+   ``` 
+3. Add model class to your project `YourModel.java` to `foo.bar.yourdomain.model` package   
+4. Create `YourService.java` storing static `List<YourModel> YOUR_MODELS`
+5. Fill `YOUR_MODELS` list with some example objects.
+6. Implement method in `YourService.java` called `List<YourModel> findAll()` allowing you to return whole `YOUR_MODEL` list
+   - in the future we can exachange this part with some data access part.
+7. Try to use `YourService.findAll()` method in `YourServlet.java` and pass it to view as below:
+ ```
+ request.setAttribute("yourList", yourService.findAll());
+ ```
+8. Add following code to see if we get correct size of list on view:
+```
+<h3>${yourList.size()}</h3>
+```
+9. Implement presenting list of objects in `list.jsp` using JSTL tags (check examples in `jsp-example` repository) 
+10. Add auto generated id to your `YouModel.java` constructor to mark each object distinct id:
+```
+UUID.randomUUID().toString()
+```
+or implement simple counter to add next id each time new object is created.
+```
+static Integer CURRENT_INDEX = 1;
+```
+Now in YourModel(...) constructor class use `CURRENT_INDEX` value and increment it for next object `++`
+
+11. Try to implement request param handling in your `doGet(...)` method in `YourServlet.java` class.
+Check out example `03_get-post-servlet` how to do this.
+12. Implement `YourModel findOne(String id)` method in `YourService.java` class returning object with requested id.
+13. Pass following object to `details.jsp` view and try to display name of this object.
+14. Create html form allowing you to pass name of the new object (as the reference use post example from jsp-exmples repository)
+15. Implement `doPost` method which creates new instance of `YourModel` and pass it to new method `add(YourModel newModel)` in `YourService` class.
+16. In the end of doPost method, you can redirect to `/` list view (use `03_get-post-servlet` as reference)
