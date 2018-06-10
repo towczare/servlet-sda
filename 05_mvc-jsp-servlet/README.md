@@ -97,6 +97,14 @@ Speedy Gonzales, and Birds Anonymous.
 <h3>${yourList.size()}</h3>
 ```
 9. Implement presenting list of objects in `list.jsp` using JSTL tags (check examples in `jsp-example` repository) 
+- remember to add dependency to your `pom.xml`:
+```
+<dependency>
+  <groupId>jstl</groupId>
+  <artifactId>jstl</artifactId>
+  <version>1.2</version>
+</dependency>
+```
 10. Add auto generated id to your `YouModel.java` constructor to mark each object distinct id:
 ```
 UUID.randomUUID().toString()
