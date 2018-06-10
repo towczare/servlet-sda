@@ -14,5 +14,10 @@
 
   <h1>Add new Animal</h1>
 
+  <form method="post" action="/animal-servlet/">
+    <label>Name of animal</label>
+    <input type="text" name="animalName" />
+    <input type="submit" value="Add animal to list" />
+  </form>
 </body>
 </html>

@@ -16,7 +16,6 @@ public class AnimalService {
     static {
         ANIMALS.add(new Animal("Gold fish", AnimalType.FISH));
         ANIMALS.add(new Animal("Nemo", AnimalType.FISH));
-        ANIMALS.add(new Animal("Karp", AnimalType.FISH));
         ANIMALS.add(new Animal("Szczupak", AnimalType.FISH));
         ANIMALS.add(new Animal("Turtle Leonardo", AnimalType.REPTILE));
         ANIMALS.add(new Animal("Turtle Donatello", AnimalType.REPTILE));
@@ -33,5 +32,7 @@ public class AnimalService {
         return ANIMALS;
     }
 
-
+    public void add(Animal animal) {
+        ANIMALS.add(animal);
+    }
 }

@@ -1,5 +1,7 @@
 package zoo.animal.controller;
 
+import zoo.animal.model.Animal;
+import zoo.animal.model.AnimalType;
 import zoo.animal.service.AnimalService;
 
 import javax.servlet.ServletException;
@@ -34,6 +36,12 @@ public class AnimalServlet extends HttpServlet {
             request.setAttribute(ANIMALS_LIST, animalService.findAll());
             request.getRequestDispatcher("list.jsp").forward(request, response);
         }
+    }
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String name = request.getParameter("animalName");
+        animalService.add(new Animal(name, AnimalType.UNKNOWN));
+        response.sendRedirect("/animal-servlet");
     }
 
     @Override
