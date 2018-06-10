@@ -8,10 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title></title>
 </head>
 <body>
-<form method="post" action="/animal-servlet/remove">
+<form method="post" action="/animal-servlet/remove" class="w3-container">
   <input type="hidden" name="animalToRemoveId" value="${animalId}"/>
 
   <h1>Are you sure?</h1>

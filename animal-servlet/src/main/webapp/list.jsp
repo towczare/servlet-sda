@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title>See list of animals</title>
 </head>
 <body>
@@ -11,7 +12,7 @@
 
   <h1>We have ${animalsList.size()} animals</h1>
 
-  <table>
+  <table class="w3-table">
       <tr>
           <th>Id</th>
           <th>Name</th>

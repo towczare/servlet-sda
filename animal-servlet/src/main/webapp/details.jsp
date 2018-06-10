@@ -8,13 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title>See details of animal</title>
 </head>
 <body>
   <h2>Details of animal</h2>
 
 
-  <ul>
+  <ul class="w3-ul">
     <li><b>Id:</b> ${animalDetails.getId()}</li>
     <li><b>Name:</b> ${animalDetails.getName()}</li>
     <li><b>Type:</b> ${animalDetails.getType()}</li>
