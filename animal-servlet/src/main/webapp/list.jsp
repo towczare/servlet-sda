@@ -17,6 +17,7 @@
           <th>Name</th>
           <th>Type</th>
           <th>Details</th>
+          <th>Remove</th>
       </tr>
       <c:forEach items="${animalsList}" var="animal">
           <tr>
@@ -24,9 +25,12 @@
               <td><c:out value="${animal.getName()}"/></td>
               <td><c:out value="${animal.getType()}"/></td>
               <td><a href="details?animalId=${animal.getId()}" >See details</a> </td>
+              <td><a href="remove?animalId=${animal.getId()}" >Remove</a> </td>
           </tr>
       </c:forEach>
   </table>
+
+    <a href="add" >Add new animal</a>
 
 </body>
 </html>

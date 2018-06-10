@@ -13,7 +13,8 @@ import java.io.IOException;
 @WebServlet(urlPatterns = {
         AnimalServlet.LIST_ACTION,
         AnimalServlet.ADD_ACTION,
-        AnimalServlet.DETAILS_ACTION
+        AnimalServlet.DETAILS_ACTION,
+        AnimalServlet.REMOVE_ACTION
 })
 public class AnimalServlet extends HttpServlet {
 
@@ -23,6 +24,7 @@ public class AnimalServlet extends HttpServlet {
     public static final String DETAILS_ACTION = "/details";
     public static final String ANIMALS_LIST = "animalsList";
     public static final String ANIMAL_ID = "animalId";
+    public static final String REMOVE_ACTION = "/remove";
 
     private AnimalService animalService;
 
@@ -32,10 +34,19 @@ public class AnimalServlet extends HttpServlet {
         if(request.getServletPath().equals(ADD_ACTION)) {
             animalForm(request, response);
         } else if(request.getServletPath().equals(DETAILS_ACTION)) {
-            animaDetails(request, response);
+            animalDetails(request, response);
+        } else if(request.getServletPath().equals(REMOVE_ACTION)) {
+
+            animalRemoveConfirm(request, response);
         } else {
             animalList(request, response);
         }
+    }
+
+    private void animalRemoveConfirm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String paramId = request.getParameter(ANIMAL_ID);
+        request.setAttribute("animalId", paramId);
+        request.getRequestDispatcher("remove.jsp").forward(request, response);
     }
 
     private void animalForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -49,7 +60,7 @@ public class AnimalServlet extends HttpServlet {
         request.getRequestDispatcher("list.jsp").forward(request, response);
     }
 
-    private void animaDetails(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    private void animalDetails(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String paramId = request.getParameter(ANIMAL_ID);
         if (paramId == null || paramId.equals("")) {
             response.sendRedirect("/animal-servlet");
@@ -60,14 +71,21 @@ public class AnimalServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String name = request.getParameter("animalName");
-        String url = request.getParameter("animalUrl");
-        String description = request.getParameter("animalDescription");
-        String age = request.getParameter("animalAge");
-        String animalType = request.getParameter("animalType");
+        if(request.getServletPath().equals(REMOVE_ACTION)) {
+            String animalToRemoveId = request.getParameter("animalToRemoveId");
+            animalService.remove(Integer.valueOf(animalToRemoveId));
+            response.sendRedirect("/animal-servlet");
+        } else {
+            String name = request.getParameter("animalName");
+            String url = request.getParameter("animalUrl");
+            String description = request.getParameter("animalDescription");
+            String age = request.getParameter("animalAge");
+            String animalType = request.getParameter("animalType");
 
-        animalService.add(new Animal(AnimalService.CURRENT_INDEX++, name, Integer.valueOf(age), url, description, AnimalType.valueOf(animalType)));
-        response.sendRedirect("/animal-servlet");
+            animalService.add(new Animal(AnimalService.CURRENT_INDEX++, name, Integer.valueOf(age), url, description, AnimalType.valueOf(animalType)));
+            response.sendRedirect("/animal-servlet");
+        }
+
     }
 
     @Override

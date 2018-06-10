@@ -5,6 +5,7 @@ import zoo.animal.model.AnimalType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by tomic on 10.06.18.
@@ -41,5 +42,11 @@ public class AnimalService {
 
     public void add(Animal animal) {
         ANIMALS.add(animal);
+    }
+
+    public void remove(Integer idToRemove) {
+        ANIMALS = ANIMALS.stream()
+                .filter(animal -> animal.getId() != idToRemove)
+                .collect(Collectors.toList());
     }
 }

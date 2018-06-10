@@ -35,6 +35,7 @@
     <input type="number" step="1" name="animalAge" />
 
     <input type="submit" value="Add animal to list" />
+    <a href="/animal-servlet" >Back to list</a>
   </form>
 </body>
 </html>
