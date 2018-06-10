@@ -1,5 +1,7 @@
 package zoo.animal.controller;
 
+import zoo.animal.service.AnimalService;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +19,9 @@ public class AnimalServlet extends HttpServlet {
     public static final String LIST_ACTION = "/";
     public static final String ADD_ACTION = "/add";
     public static final String DETAILS_ACTION = "/details";
+    public static final String ANIMALS_LIST = "animalsList";
+
+    private AnimalService animalService;
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType(TEXT_HTML);
@@ -26,6 +31,7 @@ public class AnimalServlet extends HttpServlet {
         } else if(request.getServletPath().equals(DETAILS_ACTION)) {
             request.getRequestDispatcher("details.jsp").forward(request, response);
         } else {
+            request.setAttribute(ANIMALS_LIST, animalService.findAll());
             request.getRequestDispatcher("list.jsp").forward(request, response);
         }
     }
@@ -33,6 +39,7 @@ public class AnimalServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         System.out.println("Servlet " + this.getServletName() + " has started");
+        animalService = new AnimalService();
     }
     @Override
     public void destroy() {

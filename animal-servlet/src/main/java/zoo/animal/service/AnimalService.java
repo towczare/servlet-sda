@@ -23,5 +23,15 @@ public class AnimalService {
         ANIMALS.add(new Animal("Crocodile Jerry", AnimalType.REPTILE));
     }
 
+    public Animal findOne(String id) {
+
+
+        return null;
+    }
+
+    public List<Animal> findAll() {
+        return ANIMALS;
+    }
+
 
 }
