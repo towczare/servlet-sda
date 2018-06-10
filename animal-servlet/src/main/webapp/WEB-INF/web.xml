@@ -5,18 +5,4 @@
         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
         metadata-complete="false"
         version="3.0">
-  <display-name>Animal Servlet</display-name>
-
-  <servlet>
-    <servlet-name>AnimalServlet</servlet-name>
-    <servlet-class>zoo.AnimalServlet</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>AnimalServlet</servlet-name>
-    <url-pattern>/</url-pattern>
-  </servlet-mapping>
-
-
-
 </web-app>

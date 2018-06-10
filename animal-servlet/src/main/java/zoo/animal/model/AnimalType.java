@@ -1,4 +1,4 @@
-package zoo;
+package zoo.animal.model;
 
 import java.util.Arrays;
 import java.util.Collections;

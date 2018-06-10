@@ -1,4 +1,4 @@
-package zoo;
+package zoo.animal.model;
 
 /**
  * Created by tomic on 09.06.18.
