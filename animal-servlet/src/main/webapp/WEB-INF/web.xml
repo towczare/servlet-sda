@@ -5,4 +5,13 @@
         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
         metadata-complete="false"
         version="3.0">
+
+        <filter>
+                <filter-name>EncodingFilter</filter-name>
+                <filter-class>zoo.animal.encoding.EncodingFilter</filter-class>
+        </filter>
+        <filter-mapping>
+                <filter-name>EncodingFilter</filter-name>
+                <url-pattern>/*</url-pattern>
+        </filter-mapping>
 </web-app>
