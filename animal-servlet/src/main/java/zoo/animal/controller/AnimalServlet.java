@@ -1,7 +1,9 @@
 package zoo.animal.controller;
 
+import com.google.gson.Gson;
 import zoo.animal.model.Animal;
 import zoo.animal.model.AnimalType;
+import zoo.animal.model.ChartPair;
 import zoo.animal.service.AnimalService;
 
 import javax.servlet.ServletException;
@@ -10,6 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @WebServlet(urlPatterns = {
         AnimalServlet.LIST_ACTION,
         AnimalServlet.ADD_ACTION,
@@ -76,8 +81,20 @@ public class AnimalServlet extends HttpServlet {
     }
 
     private void animalList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute(ANIMALS_LIST, animalService.findAll());
+        List<Animal> allAnimals = animalService.findAll();
+        request.setAttribute(ANIMALS_LIST, allAnimals);
+        prepareDataForChart(request, allAnimals);
         request.getRequestDispatcher("list.jsp").forward(request, response);
+    }
+
+    private void prepareDataForChart(HttpServletRequest request, List<Animal> allAnimals) {
+        request.setAttribute("chartData", new Gson().toJson(
+                allAnimals.stream()
+                        .map(a -> new ChartPair(a.getName(), a.getAge()))
+                        .collect(Collectors.toList())
+                )
+        );
+        request.setAttribute("chartTitle", "All animals ages");
     }
 
     private void animalDetails(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
