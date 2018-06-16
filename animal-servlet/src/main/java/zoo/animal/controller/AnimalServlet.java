@@ -19,8 +19,6 @@ import java.io.IOException;
 public class AnimalServlet extends HttpServlet {
 
     public static final String TEXT_HTML =     "text/html";
-    public static final String ANIMALS_LIST = "animalsList";
-    public static final String ANIMAL_ID = "animalId";
 
     public static final String LIST_ACTION =    "/";
     public static final String ADD_ACTION =     "/add";
@@ -28,6 +26,14 @@ public class AnimalServlet extends HttpServlet {
     public static final String DETAILS_ACTION = "/details";
     public static final String REMOVE_ACTION =  "/remove";
     public static final String UPDATE_ACTION =  "/update";
+
+    public static final String ANIMAL = "animal";
+    public static final String ANIMAL_ID = "animalId";
+    public static final String ANIMALS_LIST = "animalsList";
+    public static final String ANIMAL_TYPES = "animalTypes";
+    public static final String ANIMAL_SERVLET = "/animal-servlet";
+    public static final String ANIMAL_EDIT_CONTEXT = "edit";
+    public static final String ANIMAL_TO_REMOVE_ID = "animalToRemoveId";
 
     private AnimalService animalService;
 
@@ -50,21 +56,21 @@ public class AnimalServlet extends HttpServlet {
     private void animalEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String animalId = request.getParameter(ANIMAL_ID);
         Animal animal = animalService.findOne(Integer.parseInt(animalId));
-        request.setAttribute("animal", animal);
-        request.setAttribute("edit", true);
-        request.setAttribute("animalTypes", AnimalType.getAvailableTypesForUser());
+        request.setAttribute(ANIMAL, animal);
+        request.setAttribute(ANIMAL_EDIT_CONTEXT, true);
+        request.setAttribute(ANIMAL_TYPES, AnimalType.getAvailableTypesForUser());
 
         request.getRequestDispatcher("form.jsp").forward(request, response);
     }
 
     private void animalRemoveConfirm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String paramId = request.getParameter(ANIMAL_ID);
-        request.setAttribute("animalId", paramId);
+        request.setAttribute(ANIMAL_ID, paramId);
         request.getRequestDispatcher("remove.jsp").forward(request, response);
     }
 
     private void animalForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("animalTypes", AnimalType.getAvailableTypesForUser());
+        request.setAttribute(ANIMAL_TYPES, AnimalType.getAvailableTypesForUser());
 
         request.getRequestDispatcher("form.jsp").forward(request, response);
     }
@@ -77,7 +83,7 @@ public class AnimalServlet extends HttpServlet {
     private void animalDetails(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String paramId = request.getParameter(ANIMAL_ID);
         if (paramId == null || paramId.equals("")) {
-            response.sendRedirect("/animal-servlet");
+            response.sendRedirect(ANIMAL_SERVLET);
         } else {
             request.setAttribute("animalDetails", animalService.findOne(Integer.valueOf(paramId)));
             request.getRequestDispatcher("details.jsp").forward(request, response);
@@ -86,9 +92,9 @@ public class AnimalServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         if(request.getServletPath().equals(REMOVE_ACTION)) {
-            String animalToRemoveId = request.getParameter("animalToRemoveId");
+            String animalToRemoveId = request.getParameter(ANIMAL_TO_REMOVE_ID);
             animalService.remove(Integer.valueOf(animalToRemoveId));
-            response.sendRedirect("/animal-servlet");
+            response.sendRedirect(ANIMAL_SERVLET);
         } else if(request.getServletPath().equals(UPDATE_ACTION)) {
             int animalId = Integer.parseInt(request.getParameter("animalId"));
             String name = request.getParameter("animalName");
