@@ -25,6 +25,7 @@
               <td><c:out value="${animal.getId()}"/></td>
               <td><c:out value="${animal.getName()}"/></td>
               <td><c:out value="${animal.getType()}"/></td>
+              <td><a href="edit?animalId=${animal.getId()}" >Edit animal</a> </td>
               <td><a href="details?animalId=${animal.getId()}" >See details</a> </td>
               <td><a href="remove?animalId=${animal.getId()}" >Remove</a> </td>
           </tr>

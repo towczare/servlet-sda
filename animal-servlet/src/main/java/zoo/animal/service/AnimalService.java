@@ -49,4 +49,9 @@ public class AnimalService {
                 .filter(animal -> animal.getId() != idToRemove)
                 .collect(Collectors.toList());
     }
+
+    public void update(int animalId, Animal animal) {
+        remove(animalId);
+        add(animal);
+    }
 }
