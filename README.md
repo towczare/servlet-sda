@@ -1,5 +1,7 @@
 # Servlet Examples
 
+[![CodeFactor](https://www.codefactor.io/repository/github/towczare/servlet-examples/badge)](https://www.codefactor.io/repository/github/towczare/servlet-examples)
+
 ## Enable tomcat manager
 
 1. Edit following file:
