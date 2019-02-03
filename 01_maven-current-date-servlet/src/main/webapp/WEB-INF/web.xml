@@ -17,6 +17,14 @@
     <url-pattern>/</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>AnimalServlet</servlet-name>
+    <servlet-class>foo.bar.AnimalServlet</servlet-class>
+  </servlet>
 
+  <servlet-mapping>
+    <servlet-name>AnimalServlet</servlet-name>
+    <url-pattern>/animal</url-pattern>
+  </servlet-mapping>
 
 </web-app>

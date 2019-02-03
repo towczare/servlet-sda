@@ -8,11 +8,15 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class CurrentDateServlet extends HttpServlet {
 
     public static final String DEFAULT_DATE_FORMAT = "MM/dd/yyyy HH:mm:ss";
     public static final String TEXT_PLAIN = "text/plain";
+
+
+
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType(TEXT_PLAIN);
