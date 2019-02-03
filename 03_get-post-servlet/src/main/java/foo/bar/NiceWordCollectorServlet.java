@@ -11,43 +11,21 @@ import java.util.Random;
 
 public class NiceWordCollectorServlet extends HttpServlet {
 
-    public static final String TEXT_PLAIN = "text/plain";
-    private static final Random RANDOM = new Random();
-
-    public static List<String> niceWordCollection = new ArrayList<>();
-
-    static {
-        niceWordCollection.add("BEAUTIFUL");
-        niceWordCollection.add("CHEERFUL");
-        niceWordCollection.add("DESIRE");
-        niceWordCollection.add("ENERGETIC");
-        niceWordCollection.add("FLOURISH");
-        niceWordCollection.add("GROOVY");
-        niceWordCollection.add("HELPFULNESS");
-    }
+    private static final String TEXT_PLAIN = "text/plain";
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType(TEXT_PLAIN);
 
         if(request.getServletPath().equals("/random")) {
-            randomNiceWord(response);
+            response.getWriter().write(NiceWordRepository.getRandom());
         } else {
-            response.getWriter().write(
-                    String.join(", ", niceWordCollection));
+            response.getWriter().write(String.join(", ", NiceWordRepository.findAll()));
         }
-
-    }
-
-    private void randomNiceWord(HttpServletResponse response) throws IOException {
-        int size = niceWordCollection.size();
-
-        response.getWriter().write(
-                niceWordCollection.get(RANDOM.nextInt(size)));
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String word = request.getParameter("word");
-        niceWordCollection.add(word);
+        NiceWordRepository.add(word);
     }
 
     @Override
