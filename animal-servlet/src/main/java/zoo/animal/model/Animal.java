@@ -11,7 +11,15 @@ public class Animal {
     private String imageUrl;
     private String description;
     private AnimalType type;
-    
+
+    public Animal(String name, int age, String imageUrl, String description, AnimalType type) {
+        this.name = name;
+        this.age = age;
+        this.imageUrl = imageUrl;
+        this.description = description;
+        this.type = type;
+    }
+
     public Animal(int id, String name, int age, String imageUrl, String description, AnimalType type) {
         this.id = id;
         this.name = name;

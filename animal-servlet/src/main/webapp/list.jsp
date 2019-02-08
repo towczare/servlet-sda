@@ -26,7 +26,7 @@
           <th>Remove</th>
       </tr>
       <c:forEach items="${animalsList}" var="animal">
-          <tr>a
+          <tr>
               <td><c:out value="${animal.getId()}"/></td>
               <td><c:out value="${animal.getName()}"/></td>
               <td><c:out value="${animal.getType()}"/></td>

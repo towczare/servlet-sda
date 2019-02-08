@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import zoo.animal.model.Animal;
 import zoo.animal.model.AnimalType;
 import zoo.animal.model.ChartPair;
+import zoo.animal.repository.AnimalInMemoryRepository;
 import zoo.animal.service.AnimalService;
 
 import javax.servlet.ServletException;
@@ -12,7 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @WebServlet(urlPatterns = {
@@ -81,13 +84,13 @@ public class AnimalServlet extends HttpServlet {
     }
 
     private void animalList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Animal> allAnimals = animalService.findAll();
-        request.setAttribute(ANIMALS_LIST, allAnimals);
-        prepareDataForChart(request, allAnimals);
+        Map<Integer, Animal> allAnimals = animalService.findAll();
+        request.setAttribute(ANIMALS_LIST, allAnimals.values());
+        prepareDataForChart(request, allAnimals.values());
         request.getRequestDispatcher("list.jsp").forward(request, response);
     }
 
-    private void prepareDataForChart(HttpServletRequest request, List<Animal> allAnimals) {
+    private void prepareDataForChart(HttpServletRequest request, Collection<Animal> allAnimals) {
         request.setAttribute("chartData", new Gson().toJson(
                 allAnimals.stream()
                         .map(a -> new ChartPair(a.getName(), a.getAge()))
@@ -111,34 +114,42 @@ public class AnimalServlet extends HttpServlet {
         if(request.getServletPath().equals(REMOVE_ACTION)) {
             String animalToRemoveId = request.getParameter(ANIMAL_TO_REMOVE_ID);
             animalService.remove(Integer.valueOf(animalToRemoveId));
+
             response.sendRedirect(ANIMAL_SERVLET);
         } else if(request.getServletPath().equals(UPDATE_ACTION)) {
-            int animalId = Integer.parseInt(request.getParameter("animalId"));
-            String name = request.getParameter("animalName");
-            String url = request.getParameter("animalUrl");
-            String description = request.getParameter("animalDescription");
-            String age = request.getParameter("animalAge");
-            String animalType = request.getParameter("animalType");
+            Animal animalData = fromRequest(request);
+            animalService.update(animalData.getId(), animalData);
 
-            animalService.update(animalId, new Animal(animalId, name, Integer.valueOf(age), url, description, AnimalType.valueOf(animalType)));
             response.sendRedirect("/animal-servlet");
         } else {
-            String name = request.getParameter("animalName");
-            String url = request.getParameter("animalUrl");
-            String description = request.getParameter("animalDescription");
-            String age = request.getParameter("animalAge");
-            String animalType = request.getParameter("animalType");
+            Animal animalData = fromRequest(request);
+            animalService.add(animalData);
 
-            animalService.add(new Animal(AnimalService.CURRENT_INDEX++, name, Integer.valueOf(age), url, description, AnimalType.valueOf(animalType)));
             response.sendRedirect("/animal-servlet");
         }
 
     }
 
+    private Animal fromRequest(HttpServletRequest request) {
+        Integer id = null;
+        if(request.getParameter("animalId") != null) {
+            id = Integer.parseInt(request.getParameter("animalId"));
+        } else {
+            id = -1;
+        }
+        String name = request.getParameter("animalName");
+        String url = request.getParameter("animalUrl");
+        String description = request.getParameter("animalDescription");
+        String age = request.getParameter("animalAge");
+        String animalType = request.getParameter("animalType");
+
+        return new Animal(id, name, Integer.valueOf(age), url, description, AnimalType.valueOf(animalType));
+    }
+
     @Override
     public void init() throws ServletException {
         System.out.println("Servlet " + this.getServletName() + " has started");
-        animalService = new AnimalService();
+        animalService = new AnimalService(new AnimalInMemoryRepository());
     }
     @Override
     public void destroy() {

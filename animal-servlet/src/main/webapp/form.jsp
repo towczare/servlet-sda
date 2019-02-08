@@ -19,14 +19,23 @@
     <c:out value="${edit ? 'Edit Animal' : 'Add Animal'}" />
   </h1>
 
-  <form method="post" action="/animal-servlet/" class="w3-container">
+  <c:choose>
+    <c:when test="${edit}">
+      <c:url var="actionUrl" value="update?animalId=${animal.getId()}" />
+    </c:when>
+    <c:otherwise>
+      <c:url var="actionUrl" value="add" />
+    </c:otherwise>
+  </c:choose>
+
+  <form method="post" action="${actionUrl}" class="w3-container">
     <label>Name of animal</label>
     <input type="text" name="animalName" class="w3-input" value="${not empty animal ? animal.getName() : ''}" />
 
     <select name="animalType" class="w3-input">
       <c:forEach items="${animalTypes}" var="animalType">
         <c:choose>
-          <c:when test="${not empty animal and not empty animal.getType()}">
+          <c:when test="${not empty animal and not empty animal.getType() and animalType eq animal.getType()}">
             <option value="${animalType}" selected>${animalType.getName()}</option>
           </c:when>
           <c:otherwise>
