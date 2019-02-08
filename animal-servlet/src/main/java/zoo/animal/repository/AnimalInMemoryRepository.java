@@ -5,10 +5,12 @@ import zoo.animal.model.AnimalType;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class AnimalInMemoryRepository implements AnimalRepository{
 
     public static final Animal UNKNOWN_ANIMAL = new Animal(-1, "Unknown Animal", 0, "http://google.com", "-", AnimalType.UNKNOWN);
+    public static final int MAX_INDEX = 999999999;
     private static Map<Integer, Animal> ANIMALS = new HashMap<>();
 
     static {
@@ -44,6 +46,10 @@ public class AnimalInMemoryRepository implements AnimalRepository{
     }
 
     private static Integer autoincrement() {
-        return ANIMALS.size() + 1;
+        Integer newIndexMaybe = ANIMALS.size() + 1;
+        if(ANIMALS.containsKey(newIndexMaybe)) {
+            newIndexMaybe = ThreadLocalRandom.current().nextInt(1, MAX_INDEX);
+        }
+        return newIndexMaybe;
     }
 }
