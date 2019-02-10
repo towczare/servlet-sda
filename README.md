@@ -32,3 +32,16 @@ TOMCAT\apache-tomcat-9.0.8\conf\tomcat-users.xml
 
 3. [GET POST example](03_get-post-servlet/README.md)
 4. [Annotation config example](04_annotation-config-servlet/README.md)
+
+## Debuging Tomcat Applications
+Easiest way to debug application is running your tomcat with following `jpda` parameter. You can achieve this by providing it to following command:
+for linux:
+```
+./catalina.sh jpda run
+```
+for windows:
+```
+catalina.bat jpda run
+```
+Then in inteliJ idea define remote debug configuration with default jpda port 8000
+
