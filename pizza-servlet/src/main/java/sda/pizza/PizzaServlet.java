@@ -16,10 +16,11 @@ import java.util.Arrays;
 })
 public class PizzaServlet extends HttpServlet {
 
-    public static final String TEXT_HTML = "text/html";
-    public static final String PIZZA_ACTION = "/";
-    public static final String PIZZA_AUDIO_ACTION = "/audio";
-    public static final String PIZZA_COMPONENTS = "pizzaComponents";
+    private static final String TEXT_HTML = "text/html";
+    static final String PIZZA_ACTION = "/";
+    static final String PIZZA_AUDIO_ACTION = "/audio";
+    private static final String PIZZA_COMPONENTS = "pizzaComponents";
+    private static final String PIZZA_SIZES = "pizzaSizes";
 
     private PizzaService pizzaService;
 
@@ -29,6 +30,7 @@ public class PizzaServlet extends HttpServlet {
         } else if (request.getServletPath().equals(PIZZA_ACTION)) {
             response.setContentType(TEXT_HTML);
             request.setAttribute(PIZZA_COMPONENTS, PizzaComponent.values());
+            request.setAttribute(PIZZA_SIZES, PizzaSize.values());
             request.getRequestDispatcher("pizza.jsp").forward(request, response);
         } else {
             response.setContentType(TEXT_HTML);
@@ -51,8 +53,9 @@ public class PizzaServlet extends HttpServlet {
         String[] components = request.getParameterValues("components");
         String address = request.getParameter("address");
         String phone = request.getParameter("phone");
+        String size = request.getParameter("pizzaSize");
 
-        return new PizzaOrder(Arrays.asList(components), address, phone);
+        return new PizzaOrder(Arrays.asList(components), size, address, phone);
     }
 
     private void audioContent(HttpServletRequest request, HttpServletResponse response) throws IOException {

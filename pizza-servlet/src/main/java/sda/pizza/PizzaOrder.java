@@ -10,15 +10,18 @@ import java.util.stream.Collectors;
 public class PizzaOrder {
 
     private List<String> components;
-    private PizzaSize size;
+    private String size;
     private String address;
     private String phone;
 
     private static final String PIZZA_COMPONENTS = "PIZZA_COMPONENTS";
-    public static final String PIZZA_ADDRESS = "PIZZA_ADDRESS";
-    public static final String PIZZA_MOBILE = "PIZZA_MOBILE";
+    private static final String PIZZA_SIZE = "PIZZA_SIZE";
+    static final String PIZZA_ADDRESS = "PIZZA_ADDRESS";
+    static final String PIZZA_MOBILE = "PIZZA_MOBILE";
     private static String ORDER_TEMPLATE = "<speak><amazon:auto-breaths frequency=\"low\" volume=\"soft\" duration=\"x-short\">" +
-            "Dzień Dobry. Chcielibyśmy zamówić pizzę z następującymi składnikami: <break time=\"1s\"/> " +
+            "Dzień Dobry. Chcielibyśmy zamówić pizzę o rozmiarze " +
+            placeholder(PIZZA_SIZE) + "<break time=\"2s\"/> " +
+            " z następującymi składnikami: <break time=\"2s\"/> " +
             placeholder(PIZZA_COMPONENTS) +
             "<break time=\"2s\"/>. Adres zamówienia to " +
             placeholder(PIZZA_ADDRESS) +
@@ -26,8 +29,9 @@ public class PizzaOrder {
             placeholder(PIZZA_MOBILE) +
             "</amazon:auto-breaths></speak>";
 
-    public PizzaOrder(List<String> components, String address, String phone) {
+    public PizzaOrder(List<String> components, String size, String address, String phone) {
         this.components = components;
+        this.size = size;
         this.address = address;
         this.phone = phone;
     }
@@ -39,8 +43,9 @@ public class PizzaOrder {
     private Map<String, String> getPizzaOrderMap() {
         Map<String, String> data = new HashMap<String, String>();
         data.put(PIZZA_COMPONENTS, getComponentsAsString());
+        data.put(PIZZA_SIZE, getSize());
         data.put(PIZZA_ADDRESS, getAddress());
-        data.put(PIZZA_MOBILE, getPhone().replaceAll("-", ". "));
+        data.put(PIZZA_MOBILE, getPhone().replaceAll("-", ".<break time=\"1s\"/> "));
 
         return data;
     }
@@ -72,5 +77,9 @@ public class PizzaOrder {
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
                 '}';
+    }
+
+    public String getSize() {
+        return size;
     }
 }

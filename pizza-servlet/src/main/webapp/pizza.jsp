@@ -19,6 +19,16 @@
           </c:forEach>
           </p>
       </div>
+      <div class="w3-container w3-yellow">
+          <h1>Rozmiar pizzy</h1>
+          <p>
+              <select name="pizzaSize">
+                  <c:forEach items="${pizzaSizes}" var="size">
+                      <option value="${size.getPolishSize()}"><c:out value="${size.getPolishSize()}" /> </option>
+                  </c:forEach>
+              </select>
+          </p>
+      </div>
       <div class="w3-container w3-green">
           <h1>Adres zamówienia</h1>
           <p>
