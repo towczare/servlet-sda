@@ -42,20 +42,20 @@ TOMCAT\apache-tomcat-9.0.8\conf\tomcat-users.xml
 
 ## Lista modułów
 
-0. [Simple hello-world-servlet](00_hello-world-servlet/README.md)
+0. [Simple hello-world-servlet](00_hello-world-servlet/README.pl.md)
 - `/` vs `/hello`
 - package example
 - ROOT example
 
-1. [Maven archetype servlet](01_maven-current-date-servlet/README.md)
+1. [Maven archetype servlet](01_maven-current-date-servlet/README.pl.md)
 - creating servlet using archetypes
 - take a note how servlet classfile location is defined (no .class/.java extension)
 
-2. [Get parameters servlet example](02_maven-current-date-format-servlet/README.md)
+2. [Get parameters servlet example](02_maven-current-date-format-servlet/README.pl.md)
 - try play with different date formats
 - what if someone pass wrong date format in url?
 
-3. [GET POST example](03_get-post-servlet/README.md)
-4. [Annotation config example](04_annotation-config-servlet/README.md)
-5. [MVC JSP Servlet](05_mvc-jsp-servlet/README.md)
-6. [Filter Servlet](06_filter-servlet/README.md)
+3. [GET POST example](03_get-post-servlet/README.pl.md)
+4. [Annotation config example](04_annotation-config-servlet/README.pl.md)
+5. [MVC JSP Servlet](05_mvc-jsp-servlet/README.pl.md)
+6. [Filter Servlet](06_filter-servlet/README.pl.md)

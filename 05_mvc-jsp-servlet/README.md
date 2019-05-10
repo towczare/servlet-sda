@@ -1,4 +1,7 @@
 # 05_mvc-jsp-servlet
+
+[Jest też dostępna polska wersja tutaj](README.pl.md)
+
 Simple portlet showing combiining jsp technology with servlet controller
 
 ## Exercises

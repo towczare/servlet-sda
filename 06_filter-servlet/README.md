@@ -1,5 +1,8 @@
 # 06_filter-servlet
-Simple portlet showing combining jsp technology with servlet controller
+
+[Jest też dostępna polska wersja tutaj](README.pl.md)
+
+Simple servlet showing combining jsp technology with servlet controller
 
 
 ## Exercises
