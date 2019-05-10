@@ -17,7 +17,7 @@ Here is some ideas, if you don't have clue, what to build:
 > * Enter the books you’d like to buy
 > * Store the book info and images
 
-#### A recipes app
+#### 4. A recipes app
 > * Enter a name and a description with the steps
 > * Have pictures
 > * Have some ranking for difficulty and quality
@@ -25,71 +25,71 @@ Here is some ideas, if you don't have clue, what to build:
 > * Have different steps with a picture for each
 > * Store them somewhere
 
-#### A bill tracker
+#### 5. A bill tracker
 > * Log bills, amounts, and dates
 > * List bills
 > * Have a few graphs (this year / last year)
 > * Store them somewhere
 
-#### An expenses tracker
+#### 6. An expenses tracker
 > * Log expenses and tag them (or have categories)
 > * List expenses
 > * Have a few graphs (last month / last year)
 > * Store them somewhere
 
-#### A chat application
+#### 7. A chat application
 > * Some sort of stripped-down Slack
 > * People enter without authentication and are assigned a name, stored for when they come back
 > * Store the history
 > * Add notifications
 
-#### A notes app
+#### 8. A notes app
 > * Add a new note
 > * List all your notes in the sidebar
 > * Store them somewhere
 
-#### A personal diary app
+#### 9. A personal diary app
 > * Add entries with a date and text
 > * Show more recent first
 > * Attach pictures
 > * Store them somewhere
 
-#### A pomodoro app
+#### 10. A pomodoro app
 > * Enter a time
 > * Start timer
 > * Alert when the time is over
 
-#### A meme generator
+#### 11. A meme generator
 > * Have 10 popular meme images
 > * Let the user add the text
 > * Result is image + text
 > * Store the history
 
-#### Tic-tac-toe game
+#### 12. Tic-tac-toe game
 > * We all know what a tic-tac-toe game is 🙂
 
-#### The game of life
+#### 13. The game of life
 > * A great project involving math and graphics.
 
-#### A blog engine
+#### 14. A blog engine
 > * Allow user to login and add posts
 > * Visitors can add comments
 > * Store the data somewhere
 
-#### A QA engine
+#### 15. A QA engine
 > * Allow user to login
 > * Add questions
 > * Answer to questions
 > * Allow original user to choose the best question
 > * Store the data somewhere
 
-#### A forum engine
+#### 16. A forum engine
 > * Allow user to login
 > * Add posts
 > * Comment on posts
 > * Store the data somewhere
 
-#### An embeddable live chat
+#### 17. An embeddable live chat
 Think Intercom or Olark.
 
 > * Have a “backend” where you respond

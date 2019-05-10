@@ -59,3 +59,16 @@ Paste content of following file `settings.xml` to `Users/USERNAME/.m2` directory
 4. [Annotation config example](04_annotation-config-servlet/README.md)
 5. [MVC JSP Servlet](05_mvc-jsp-servlet/README.md)
 6. [Filter Servlet](06_filter-servlet/README.md)
+
+## Debuging Tomcat Applications
+Easiest way to debug application is running your tomcat with following `jpda` parameter. You can achieve this by providing it to following command:
+for linux:
+```
+./catalina.sh jpda run
+```
+for windows:
+```
+catalina.bat jpda run
+```
+Then in inteliJ idea define remote debug configuration with default jpda port 8000
+
