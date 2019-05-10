@@ -1,7 +1,10 @@
 # 00_hello-world-servlet
+
+[Jest też dostępna polska wersja tutaj](README.pl.md)
+
 Simplest version of servlet.
 
-## How to run it?
+## :gear: How to run it?
 
 1. Compile java classes using following command. Note classpath parameter and `servlet-api.jar` library
 ```

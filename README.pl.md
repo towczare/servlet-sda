@@ -1,27 +1,28 @@
 # Servlet Examples
-[Jest też dostępna polska wersja tutaj](README.pl.md)
+
+[This file is translated version of original file available here](README.md)
 
 [![CodeFactor](https://www.codefactor.io/repository/github/towczare/servlet-sda/badge)](https://www.codefactor.io/repository/github/towczare/servlet-sda)
 
-## Enable tomcat manager
+## Włączamy manager Tomcat
 
-1. Edit following file:
+1. Edytuj ten plik:
 ```
 TOMCAT\apache-tomcat-9.0.8\conf\tomcat-users.xml
 ```
-2. Add following section:
+2. Dodaj następującą sekcję:
 ```
 <role rolename="manager-gui"/>
 <user username="tomcat" password="tomcat" roles="tomcat,manager-gui,manager-script"/>
 ```
-3. Start your tomcat by running `startup.sh` or `startup.bat`
-4. Verify if manager is available `http://localhost:8080/manager/html`
-5. Basic auth will require from you user and password, default for this configuration `tomcat/tomcat`
-6. You should see following page:
-![.images/tomcat_manager.png](.images/tomcat_manager.png)
+3. Uruchom Tomcata przy użyciu `startup.sh` lub `startup.bat`
+4. Zweryfikuj, że manager jest dostępny `http://localhost:8080/manager/html`
+5. Zostaniesz poproszony o hasło któe podałeś w konfiguracji, domyślne `tomcat/tomcat`
+6. Powinieneś zobaczyć okno podobne do poniższego:
+![.images//tomcat_manager.png](.images/tomcat_manager.png)
 
-## Maven configure settings
-Paste content of following file `settings.xml` to `Users/USERNAME/.m2` directory (`~/.m2` linux users)
+## Konfiguracja ustawień mavena
+1. Wklej poniższą treść do pliku `settings.xml` zlokalizowanego w folderze `Users/USERNAME/.m2` (`~/.m2` użytkownicy linuxa lub maca)
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
@@ -39,8 +40,7 @@ Paste content of following file `settings.xml` to `Users/USERNAME/.m2` directory
 </settings>
 ```
 
-
-## List of modules
+## Lista modułów
 
 0. [Simple hello-world-servlet](00_hello-world-servlet/README.md)
 - `/` vs `/hello`

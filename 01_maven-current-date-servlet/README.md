@@ -1,7 +1,10 @@
 # 01_maven-current-date-servlet
+
+[Jest też dostępna polska wersja tutaj](README.pl.md)
+
 Simple servlet using maven archetype presenting current date.
 
-## How to run it?
+## :gear: How to run it?
 
 1. Compile sources to target .war file using following command
 ```
