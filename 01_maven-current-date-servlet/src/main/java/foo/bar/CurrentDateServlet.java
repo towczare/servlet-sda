@@ -25,7 +25,7 @@ public class CurrentDateServlet extends HttpServlet {
     }
     @Override
     public void destroy() {
-        System.out.println("Servlet " + this.getServletName() + " has stopped");
+        System.out.println("Servlet " + this.getServletName() + " has been stopped");
     }
 
 
