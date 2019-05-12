@@ -7,26 +7,25 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class AnimalServlet extends HttpServlet {
 
     private static final String TEXT_PLAIN = "text/plain";
     private static final Random RANDOM = new Random();
 
-    private static List<Animal> ANIMALS = new ArrayList<>();
+    private static Map<AnimalType, List<Animal>> ANIMALS = new HashMap<>();
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Animal animal = getRandomAnimal();
+        String type = request.getParameter("type");
+        Animal animal = getRandomAnimal(AnimalType.of(type));
         response.setContentType(TEXT_PLAIN);
         response.getWriter().write(animal.toString());
     }
 
-    private Animal getRandomAnimal() {
-        return ANIMALS.get(RANDOM.nextInt(ANIMALS.size()));
+    private Animal getRandomAnimal(AnimalType animalType) {
+        List<Animal> animalsOfType = ANIMALS.get(animalType);
+        return animalsOfType.get(RANDOM.nextInt(animalsOfType.size()));
     }
 
     @Override
@@ -36,9 +35,28 @@ public class AnimalServlet extends HttpServlet {
     }
 
     private void populateAnimalList() {
-        ANIMALS.add(new Animal("Piesek Pimpuś"));
-        ANIMALS.add(new Animal("Kot Filemon"));
-        ANIMALS.add(new Animal("Mysz Miki"));
+        List<Animal> mammals = new ArrayList<>();
+        mammals.add(new Animal("Piesek Pimpuś"));
+        mammals.add(new Animal("Kot Filemon"));
+        mammals.add(new Animal("Mysz Miki"));
+        ANIMALS.put(AnimalType.MAMMAL, mammals);
+
+        List<Animal> ants = new ArrayList<>();
+        ants.add(new Animal("Pszczółka Maja"));
+        ants.add(new Animal("Mrówka Z"));
+        ANIMALS.put(AnimalType.INSECT, ants);
+
+        List<Animal> fishes = new ArrayList<>();
+        fishes.add(new Animal("Szczupak król wód"));
+        fishes.add(new Animal("Rybka Nemo"));
+        ANIMALS.put(AnimalType.FISH, fishes);
+
+
+        List<Animal> birds = new ArrayList<>();
+        birds.add(new Animal("Dzięcioł Felix"));
+        birds.add(new Animal("Gołąb"));
+        ANIMALS.put(AnimalType.BIRD, birds);
+
     }
 
     @Override
