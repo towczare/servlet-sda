@@ -50,7 +50,8 @@ public class AnimalService {
     }
 
     public List<Animal> findAll() {
-        //FIXME:
-        return ANIMALS.get(AnimalType.MAMMAL);
+        return ANIMALS.values().stream()
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
     }
 }

@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Random;
 
 public class NiceWordRepository {
-
     private static List<String> niceWordCollection = new ArrayList<>();
     private static final Random RANDOM = new Random();
 

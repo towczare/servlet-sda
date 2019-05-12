@@ -16,7 +16,6 @@ public class AnimalServlet extends HttpServlet {
     private static final String TEXT_PLAIN = "text/plain";
     private AnimalService animalsService;
 
-
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String type = request.getParameter("type");
         response.setContentType(TEXT_PLAIN);
