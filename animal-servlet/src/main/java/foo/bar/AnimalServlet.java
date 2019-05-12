@@ -1,6 +1,7 @@
 package foo.bar;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,60 +10,47 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+@WebServlet(urlPatterns = {"/", "/random"}, displayName = "Animal Servlet")
 public class AnimalServlet extends HttpServlet {
 
     private static final String TEXT_PLAIN = "text/plain";
-    private static final Random RANDOM = new Random();
+    private AnimalService animalsService;
 
-    private static Map<AnimalType, List<Animal>> ANIMALS = new HashMap<>();
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String type = request.getParameter("type");
-        Animal animal = getRandomAnimal(AnimalType.of(type));
         response.setContentType(TEXT_PLAIN);
-        response.getWriter().write(animal.toString());
+
+        if(request.getServletPath().equals("/random")) {
+            Animal animal = animalsService.getRandomAnimal(AnimalType.of(type));
+            response.getWriter().write(animal.toString());
+        } else {
+            List<Animal> animals = animalsService.findAll();
+            response.getWriter().write(String.join(", ", animals.toString()));
+        }
     }
 
-    private Animal getRandomAnimal(AnimalType animalType) {
-        List<Animal> animalsOfType = ANIMALS.get(animalType);
-        return animalsOfType.get(RANDOM.nextInt(animalsOfType.size()));
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String animalName = request.getParameter("animalName");
+        String animalType = request.getParameter("animalType");
+
+        if(animalType == null || animalName == null) {
+            response.sendRedirect("/animal-servlet");
+        } else {
+            animalsService.add(animalType, new Animal(animalName));
+            response.sendRedirect("/animal-servlet");
+        }
     }
 
     @Override
     public void init() throws ServletException {
-        populateAnimalList();
+        animalsService = new AnimalService();
         System.out.println("Servlet " + this.getServletName() + " has started");
-    }
-
-    private void populateAnimalList() {
-        List<Animal> mammals = new ArrayList<>();
-        mammals.add(new Animal("Piesek Pimpuś"));
-        mammals.add(new Animal("Kot Filemon"));
-        mammals.add(new Animal("Mysz Miki"));
-        ANIMALS.put(AnimalType.MAMMAL, mammals);
-
-        List<Animal> ants = new ArrayList<>();
-        ants.add(new Animal("Pszczółka Maja"));
-        ants.add(new Animal("Mrówka Z"));
-        ANIMALS.put(AnimalType.INSECT, ants);
-
-        List<Animal> fishes = new ArrayList<>();
-        fishes.add(new Animal("Szczupak król wód"));
-        fishes.add(new Animal("Rybka Nemo"));
-        ANIMALS.put(AnimalType.FISH, fishes);
-
-
-        List<Animal> birds = new ArrayList<>();
-        birds.add(new Animal("Dzięcioł Felix"));
-        birds.add(new Animal("Gołąb"));
-        ANIMALS.put(AnimalType.BIRD, birds);
-
     }
 
     @Override
     public void destroy() {
         System.out.println("Servlet " + this.getServletName() + " has stopped");
     }
-
 
 }
