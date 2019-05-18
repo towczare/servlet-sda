@@ -22,6 +22,7 @@ public class AnimalServlet extends HttpServlet {
             Animal animal = animalsService.getRandomAnimal(AnimalType.of(type));
             response.getWriter().write(animal.toString());
         } else if(isRoute(request, "/add")) {
+            request.setAttribute("animalTypes", AnimalType.values());
             request.getRequestDispatcher("animal-form.jsp").forward(request, response);
         } else if(isRoute(request, "/animal")) {
             String animalId = request.getParameter("animalId");

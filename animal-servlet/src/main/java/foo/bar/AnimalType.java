@@ -2,10 +2,16 @@ package foo.bar;
 
 public enum AnimalType {
 
-    INSECT,
-    BIRD,
-    FISH,
-    MAMMAL;
+    INSECT("Insect"),
+    BIRD("Bird"),
+    FISH("Fish"),
+    MAMMAL("Mammal");
+
+    private String label;
+
+    AnimalType(String label) {
+        this.label = label;
+    }
 
     public static AnimalType of(String type) {
         try {
@@ -16,5 +22,9 @@ public enum AnimalType {
         } catch(IllegalArgumentException ex) {
             return MAMMAL;
         }
+    }
+
+    public String getLabel() {
+        return label;
     }
 }
