@@ -12,9 +12,9 @@ import java.util.List;
 @WebServlet(name = "mvc-jsp-servlet", urlPatterns = {"/", "/add"})
 public class MvcJspServlet extends HttpServlet {
 
-    public static final String TEXT_HTML = "text/html";
+    static final String TEXT_HTML = "text/html";
 
-    public static List<String> greetingList = new ArrayList<>();
+    static List<String> greetingList = new ArrayList<>();
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType(TEXT_HTML);

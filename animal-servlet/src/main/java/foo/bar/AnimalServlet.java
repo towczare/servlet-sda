@@ -16,7 +16,7 @@ public class AnimalServlet extends HttpServlet {
     private static final String TEXT_PLAIN = "text/plain";
     private AnimalService animalsService;
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String type = request.getParameter("type");
         response.setContentType(TEXT_PLAIN);
 
@@ -25,7 +25,8 @@ public class AnimalServlet extends HttpServlet {
             response.getWriter().write(animal.toString());
         } else {
             List<Animal> animals = animalsService.findAll();
-            response.getWriter().write(String.join(", ", animals.toString()));
+            request.setAttribute("animals", animals);
+            request.getRequestDispatcher("animal-list.jsp").forward(request, response);
         }
     }
 
