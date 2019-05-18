@@ -17,6 +17,8 @@
 
   <h1>We have ${animalsList.size()} animals</h1>
 
+    <img src="images/img_lights.jpg" />
+
   <table class="w3-table">
       <tr>
           <th>Id</th>
