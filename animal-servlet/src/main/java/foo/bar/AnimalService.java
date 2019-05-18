@@ -51,4 +51,9 @@ public class AnimalService {
     public Animal getAnimal(String animalId) {
         return ANIMALS.get(Long.valueOf(animalId));
     }
+
+    public void update(Animal updatedAnimal) {
+        Long id = updatedAnimal.getId();
+        ANIMALS.put(id, updatedAnimal);
+    }
 }

@@ -2,10 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Animal List</title>
+    <title>${viewHeader}</title>
 </head>
 <body>
-    <h1>Animal List of size ${animals.size()} </h1>
+    <h1>${viewHeader}</h1>
 
     <table border="2px">
         <tr>
@@ -13,6 +13,7 @@
             <th>Animal name</th>
             <th>Animal type</th>
             <th>Details</th>
+            <th>Edit</th>
         </tr>
 
         <c:forEach items="${animals}" var="animal" >
@@ -21,6 +22,7 @@
                 <td>${animal.name}</td>
                 <td>${animal.type}</td>
                 <td><a href="/animal-servlet/animal?animalId=${animal.id}">See details of ${animal.name}</a></td>
+                <td><a href="/animal-servlet/edit?animalId=${animal.id}">Edit ${animal.name}</a></td>
             </tr>
         </c:forEach>
     </table>

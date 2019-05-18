@@ -2,10 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Animal Details</title>
+    <title>${viewHeader}</title>
 </head>
 <body>
-    <h1>Animal Details</h1>
+    <h1>${viewHeader}</h1>
 
     <h2>Presenting details of animal with id ${animalId}</h2>
 
