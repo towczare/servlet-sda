@@ -19,5 +19,6 @@
         </c:forEach>
     </table>
 
+    <a href="/animal-servlet/add" >Add new Animal!</a>
 </body>
 </html>

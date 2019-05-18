@@ -10,7 +10,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-@WebServlet(urlPatterns = {"/", "/random"}, displayName = "Animal Servlet")
+@WebServlet(urlPatterns = {"/", "/random", "/add"}, displayName = "Animal Servlet")
 public class AnimalServlet extends HttpServlet {
 
     private static final String TEXT_PLAIN = "text/plain";
@@ -23,6 +23,8 @@ public class AnimalServlet extends HttpServlet {
         if(request.getServletPath().equals("/random")) {
             Animal animal = animalsService.getRandomAnimal(AnimalType.of(type));
             response.getWriter().write(animal.toString());
+        } else if(request.getServletPath().equals("/add")) {
+            request.getRequestDispatcher("animal-form.jsp").forward(request, response);
         } else {
             List<Animal> animals = animalsService.findAll();
             request.setAttribute("animals", animals);
