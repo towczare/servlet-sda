@@ -6,11 +6,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
-@WebServlet(urlPatterns = {"/", "/random", "/add"}, displayName = "Animal Servlet")
+@WebServlet(urlPatterns = {"/", "/random", "/add", "/animal"}, displayName = "Animal Servlet")
 public class AnimalServlet extends HttpServlet {
 
     private static final String TEXT_PLAIN = "text/plain";
@@ -20,16 +18,34 @@ public class AnimalServlet extends HttpServlet {
         String type = request.getParameter("type");
         response.setContentType(TEXT_PLAIN);
 
-        if(request.getServletPath().equals("/random")) {
+        if(isRoute(request, "/random")) {
             Animal animal = animalsService.getRandomAnimal(AnimalType.of(type));
             response.getWriter().write(animal.toString());
-        } else if(request.getServletPath().equals("/add")) {
+        } else if(isRoute(request, "/add")) {
             request.getRequestDispatcher("animal-form.jsp").forward(request, response);
+        } else if(isRoute(request, "/animal")) {
+            String animalId = request.getParameter("animalId");
+            if (animalId == null) {
+                response.sendRedirect("/animal-servlet");
+            } else {
+                Animal animal = animalsService.getAnimal(animalId);
+                if (animal == null) {
+                    response.sendRedirect("/animal-servlet");
+                } else {
+                    request.setAttribute("animalId", animalId);
+                    request.setAttribute("animalDetails", animal);
+                    request.getRequestDispatcher("animal-details.jsp").forward(request, response);
+                }
+            }
         } else {
             List<Animal> animals = animalsService.findAll();
             request.setAttribute("animals", animals);
             request.getRequestDispatcher("animal-list.jsp").forward(request, response);
         }
+    }
+
+    private boolean isRoute(HttpServletRequest request, String urlPattern) {
+        return request.getServletPath().equals(urlPattern);
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -39,7 +55,7 @@ public class AnimalServlet extends HttpServlet {
         if(animalType == null || animalName == null) {
             response.sendRedirect("/animal-servlet");
         } else {
-            animalsService.add(animalType, new Animal(animalName));
+            animalsService.add(animalName, AnimalType.of(animalType));
             response.sendRedirect("/animal-servlet");
         }
     }
